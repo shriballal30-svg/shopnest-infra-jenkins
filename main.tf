@@ -43,32 +43,139 @@ resource "aws_security_group" "shopnest_sg" {
   name   = "shopnest-sg"
   vpc_id = aws_vpc.shopnest_vpc.id
 
+  # -----------------------------
+  # SSH
+  # -----------------------------
   ingress {
+    description = "SSH"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # -----------------------------
+  # HTTP
+  # -----------------------------
   ingress {
+    description = "HTTP"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # -----------------------------
+  # Frontend
+  # -----------------------------
   ingress {
+    description = "Frontend"
     from_port   = 3000
     to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # -----------------------------
+  # Product Service
+  # -----------------------------
+  ingress {
+    description = "Product Service"
+    from_port   = 4001
+    to_port     = 4001
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # -----------------------------
+  # User Service
+  # -----------------------------
+  ingress {
+    description = "User Service"
+    from_port   = 4002
+    to_port     = 4002
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # -----------------------------
+  # Cart Service
+  # -----------------------------
+  ingress {
+    description = "Cart Service"
+    from_port   = 4003
+    to_port     = 4003
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # -----------------------------
+  # Notification Service
+  # -----------------------------
+  ingress {
+    description = "Notification Service"
+    from_port   = 4004
+    to_port     = 4004
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # -----------------------------
+  # Python Service
+  # -----------------------------
+  ingress {
+    description = "Python Service"
+    from_port   = 5000
+    to_port     = 5000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # -----------------------------
+  # PostgreSQL
+  # -----------------------------
+  ingress {
+    description = "PostgreSQL"
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # -----------------------------
+  # Redis
+  # -----------------------------
+  ingress {
+    description = "Redis"
+    from_port   = 6379
+    to_port     = 6379
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # -----------------------------
+  # MongoDB
+  # -----------------------------
+  ingress {
+    description = "MongoDB"
+    from_port   = 27017
+    to_port     = 27017
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # -----------------------------
+  # Outbound
+  # -----------------------------
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "shopnest-sg"
   }
 }
 
@@ -103,3 +210,4 @@ resource "aws_instance" "shopnest_ec2" {
     Name = "shopnest-ec2"
   }
 }
+
